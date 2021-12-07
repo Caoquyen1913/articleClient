@@ -1,0 +1,27 @@
+<!-- <button (click)="getArticle()">click</button> -->
+<div *ngIf="tagSelected">
+    <span class="tagStyle">Tag: </span>
+    <span class="tagSelected tagStyle">
+#{{tagSelected}}
+  <!-- <mark class="tagSelected">#{{tagSelected}}</mark> -->
+</span>
+</div>
+<div *ngIf="articles.length>1" class="container">
+    <div *ngFor="let article of articles | paginate: { itemsPerPage: 5, currentPage: page }" class="news">
+        <!-- <h1>{{article.title}}</h1> -->
+        <a [href]="article.url" target="_blank">{{article.title}}</a>
+        <br>
+        <span>published at: {{article.published_at}}</span>
+        <br>
+        <span>author: {{article.user.name}}</span>
+        <br>
+        <img [src]="article.social_image">
+        <br>
+        <p>{{article.description}}</p>
+        <!-- <div *ngFor="let tag of article.tag_list"> -->
+        <span>Tags: </span>
+        <button *ngFor="let tag of article.tag_list" class="tags" (click)="getArticle(tag)"> {{tag}} </button>
+        <!-- </div> -->
+    </div>
+    <pagination-controls (pageChange)="page = $event" class="page"></pagination-controls>
+</div>

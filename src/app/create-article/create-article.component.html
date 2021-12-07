@@ -1,0 +1,78 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<div class="container">
+    <h2>Article form</h2>
+    <form class="form-horizontal" [formGroup]="formData" (ngSubmit)="submitData()">
+        <div class=" form-group ">
+            <label class="control-label col-sm-2 " for="title">Title:</label>
+            <div class="col-sm-10 ">
+                <input type="text " class="form-control" id="title" placeholder="Enter Title " formControlName="title">
+                <div *ngIf="title?.touched && title?.hasError('required')" class="valid ">Title Required</div>
+            </div>
+
+        </div>
+        <div class="form-group ">
+            <label class="control-label col-sm-2 " for="body_markdown ">Body markdown:</label>
+            <div class="col-sm-10 ">
+                <input type="text" class="form-control " id="body_markdown " placeholder="Enter body_markdown " formControlName="body_markdown">
+                <div *ngIf="body_markdown?.touched && body_markdown?.hasError('required')" class="valid ">body_markdown Required</div>
+            </div>
+        </div>
+
+        <div class="form-group ">
+            <label class="control-label col-sm-2 " for="series ">Series:</label>
+            <div class="col-sm-10 ">
+                <input type="text" class="form-control " id="series " placeholder="Enter series" formControlName="series">
+                <div *ngIf="series?.touched && series?.hasError('required')" class="valid ">series Required</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2 " for="Published">Published:</label>
+            <div class="col-sm-10 ">
+                <input type="checkbox" class="form-control " id="published" formControlName="published">
+            </div>
+        </div>
+
+        <div formArrayName="tags">
+            <div *ngFor="let tag of tags.controls; let i=index" class="form-group">
+                <label for="tag-{{ i }}" class="control-label col-sm-2 ">Tags:</label>
+                <div class="col-sm-10 ">
+                    <input id="tag-{{ i }}" type="text" [formControlName]="i" class="form-control" placeholder="Enter Tag">
+                </div>
+
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2 "></label>
+                <div class="col-sm-10 ">
+                    <button class="form-control" (click)="addTags()" type="button">+ Add another tag</button>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10 ">
+                <button type="submit " class="btn btn-default ">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div *ngIf="article.title" class="container">
+    <!-- <div *ngFor="let article of articles | paginate: { itemsPerPage: 5, currentPage: page }" class="news"> -->
+    <!-- <h1>{{article.title}}</h1> -->
+    <a [href]="article.url" target="_blank">{{article.title}}</a>
+    <br>
+    <span>published at: {{article.published_at}}</span>
+    <br>
+    <span>author: {{article.user.name}}</span>
+    <br>
+    <img [src]="article.social_image" [alt]="article.title">
+    <br>
+    <p>{{article.description}}</p>
+    <!-- <div *ngFor="let tag of article.tag_list"> -->
+    <span>Tags: </span>
+    <button *ngFor="let tag of article.tag_list" class="tags"> {{tag}} </button>
+    <!-- </div> -->
+    <!-- </div> -->
+</div>

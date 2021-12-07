@@ -1,0 +1,73 @@
+table,
+th,
+td {
+    border: 1px solid black;
+}
+
+img {
+    width: 500px;
+    height: 300px;
+}
+
+p {
+    font-size: 20px;
+}
+
+h1:hover {
+    color: red;
+}
+
+.news {
+    border: 10px double black;
+    padding: 20px;
+    width: 50%;
+    margin: auto;
+    background-color: white;
+}
+
+.container {
+    background-color: lightgray;
+}
+
+div {
+    justify-content: center;
+    align-content: center;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    font-size: 32px;
+}
+
+a:hover {
+    color: red;
+}
+
+.tags {
+    background-color: rgb(233, 233, 233);
+    margin: 5px;
+    border: 1px solid;
+    padding: 4px;
+}
+
+.tags:hover {
+    background-color: rgb(185, 192, 255);
+}
+
+.tagSelected {
+    background-color: rgb(233, 233, 233);
+}
+
+.tagStyle {
+    font-size: 25px;
+}
+
+.page {
+    font-size: 30px;
+}
+
+.valid {
+    color: red;
+}
